@@ -19,5 +19,3 @@ def ask_for_input():
          break
     return
 
-ask_for_input()
-
