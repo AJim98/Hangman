@@ -2,14 +2,14 @@ import random
 
 class Hangman:
     def __init__(self, word_list, num_lives = 5):
-        self.word = self.get_word()
+        self.word = self.get_random_word()
         self.word_guessed = ["_"]*len(self.word)
         self.num_letters = len(set(self.word))
         self.num_lives = num_lives
         self.word_list = word_list
         self.list_of_guesses = []
         
-    def get_word(self):
+    def get_random_word(self):
         return random.choice(self.word_list)
     
     def check_guess(self):
@@ -23,7 +23,8 @@ class Hangman:
         else:
             self.num_lives -= 1
             print(f"Sorry {guess} is no in the word.")
-            print(f"You have {num_lives} left")
+            print(f"You have {self.num_lives} left")
+            
    
     def ask_for_input(self, guess):
         while True:
@@ -37,7 +38,8 @@ class Hangman:
                 self.list_of_guesses.append(guess)
                 break
 
-Hangman.ask_for_input()
+hangman_game = Hangman(["apple", "pear", "strawberry"])
+hangman_game.ask_for_input()
             
 
         
