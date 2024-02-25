@@ -5,3 +5,4 @@ Demonstrated proficiency in the foundations in the principle of object-oriented 
 3. Designed and executed logical structures, incorporating conditional statements to enhance user experience.
 4. Used OOP principles including encapsulation and abstraction.
 
+Please note that the full, completed Hangman game is saved as "milestone5.py".
