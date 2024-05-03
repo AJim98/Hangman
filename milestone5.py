@@ -1,66 +1,63 @@
 import random
 
+# Creating the Hangman Class
 class Hangman:
-    def __init__(self, word_list, num_lives = 5):
-        self.word_list = word_list
+    def __init__(self, word_list, num_lives = 5): 
+        # Creating the magic method for the Hangman class.
+        self.word = random.choice(word_list)
+        self.word_guessed = ["_" for _ in range(len(self.word))]
+        self.num_letters = len(self.word)
         self.num_lives = num_lives
-        self.word = self.get_random_word()
-        self.word_guessed = ["_"] * len(self.word)
-        self.num_letters = len(set(self.word))
+        self.word_list = word_list
         self.list_of_guesses = []
         
-    def get_random_word(self):
-        return random.choice(self.word_list)
-    
     def check_guess(self, guess):
+        # This checks to see if the input letter is in the randomly selected word and then updated the game as needed.
         guess = guess.lower()
-        if guess in self.word:
+        if guess in self.word.lower():
             print(f"Good guess! {guess} is in the word.")
-            for i,letter in enumerate(self.word):
-                if letter == guess:
+            for i, letter in enumerate(self.word):
+                if self.word.lower()[i] == guess:
                     self.word_guessed[i] = guess
+            print(self.word_guessed)
             self.num_letters -= 1
         else:
-            self.num_lives -= 1
-            print(f"Sorry {guess} is no in the word.")
-            print(f"You have {self.num_lives} left")
+            if guess not in self.list_of_guesses:
+                self.list_of_guesses.append(guess)   # If the guess is not in the word, add it to the list of guessed words.
+                self.num_lives -= 1
+                print(f"Sorry but {guess} is not in the word. Please try again.")
+                if self.num_lives >= 1:
+                    print(f"You have {self.num_lives} left.")
+                else:
+                    self.num_lives == 0
+                    print(f"You have {self.num_lives}.Game over!")
             
-   
     def ask_for_input(self):
         while True:
-            guess = input("Enter a guess: ").lower()
+            guess = input("Enter a guess: ")
             if guess.isalpha() == False or len(guess) != 1:
                 print("Invalid input. Please enter a single alphabetical letter.")
             elif guess in self.list_of_guesses:
-                print("You have already tried this.")
+                print("You have already tried this letter!")
             else:
                 self.check_guess(guess)
                 self.list_of_guesses.append(guess)
-                break
     
-    # play_game is defined as a staticmethod, therefore it must be lable as one
-    @staticmethod
-    def play_game(word_list):
-        num_lives = 5
-        game = Hangman(word_list, num_lives)
-        while True:
-            if game.num_lives == 0:
-                print("You lost!")
-                break
-            elif game.num_letters > 0:
-               game.ask_for_input()
-            else:
-                print("Congratulations you have won!!!")
-                break
+# This block of code is used to play the game.
+def play_game(word_list):
+    num_lives = 5
+    game = Hangman(word_list, num_lives)
+    while True:
+        if game.num_lives == 0:
+            print(f"You have {game.num_lives} lives, you have lost!")
+            break
+        elif game.num_lives > 0:
+            game.ask_for_input()
+        else:
+            print("Congratulations, you have won!!!")
+            break
 
-
-word_list = ["apple", "pear", "banana", "kiwi"]
-hangman_game = Hangman(word_list)
-hangman_game.play_game(word_list)
-
-
-
-
-
-
-
+# This is a conditional statement that tells python to run under certain conditions.
+if __name__ == "__main__":
+    word_list = ["Apple", "Banana", "Cherry", "Strawberry", "Peach"]
+    play_game(word_list)
