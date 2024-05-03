@@ -1,5 +1,8 @@
 # Hangman
-## This repository will contain all relevant files for the Hangman game, as part of Project: Hangman, part of AiCore's DevOps course.
-## Milestone 3 and 4 have been completed and updated as needed.
-## Milestone 5 haas been added and completed, although it took a while.
-## Despite it being completed it still requires some addidtional clean up before submitting to the repo.
+Demonstrated proficiency in the foundations in the principle of object-oriented programming (OOP) through the creation of a hangman game.
+1. Built an implementation of the Hangman game in Python.
+2. Implemented robust error-handling mechanisms to ensure seamless user interaction and gameplay.
+3. Designed and executed logical structures, incorporating conditional statements to enhance user experience.
+4. Used OOP principles including encapsulation and abstraction.
+
+Please note that the full, completed Hangman game is saved as "milestone5.py".
